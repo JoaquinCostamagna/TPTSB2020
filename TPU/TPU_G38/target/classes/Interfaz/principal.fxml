@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="348.0" prefWidth="589.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interfaz.PrincipalController">
+    <children>
+        <Button fx:id="btnCambiar" layoutX="511.0" layoutY="26.0" mnemonicParsing="false" onAction="#cambiarUbicacion" text="Cambiar..." />
+        <Label fx:id="lblUbicacion" layoutX="106.0" layoutY="30.0" text="C:\Users\Usuario\Desktop\FRC\Sistemas III\TSB\TPU\120819-054029">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font></Label>
+        <Label layoutX="14.0" layoutY="30.0" text="Origen de datos: " />
+        <Button fx:id="btnCargar" layoutX="14.0" layoutY="58.0" mnemonicParsing="false" onAction="#cargarDatos" text="Cargar datos" />
+        <TextArea fx:id="txtAgrupaciones" layoutX="22.0" layoutY="99.0" prefHeight="230.0" prefWidth="548.0" />
+    </children>
+</AnchorPane>
