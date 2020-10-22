@@ -2,6 +2,8 @@ package Interfaz;
 
 import Negocio.Agrupaciones;
 import Soporte.TextFile;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -23,14 +25,13 @@ public class PrincipalController {
     }
 
     public void cargarDatos(ActionEvent actionEvent) {
+        ObservableList ol;
+        //Generamos lista de resultados por agrupacion (para el pais)
         Agrupaciones agrupaciones = new Agrupaciones(lblUbicacion.getText());
+        ol = FXCollections.observableArrayList(agrupaciones.getResultados());
+        lvwResultados.setItems(ol);
         txtAgrupaciones.setText(agrupaciones.toString());
 
-        //Borrador
-        TextFile fileRegiones = new TextFile(lblUbicacion.getText() + "\\descripcion_regiones.dsv");
-        System.out.println(fileRegiones.leerEncabezado());
-        TextFile fileMesas = new TextFile(lblUbicacion.getText() + "\\mesas_totales_agrp_politica.dsv");
-        System.out.println(fileMesas.leerEncabezado());
 
 
 

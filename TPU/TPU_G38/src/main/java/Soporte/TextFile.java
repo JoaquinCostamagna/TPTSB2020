@@ -1,6 +1,7 @@
 package Soporte;
 
 import Negocio.Agrupacion;
+import Negocio.Region;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -68,5 +69,26 @@ public class TextFile {
         } catch (FileNotFoundException e) {
             System.out.println("No se pudo leer el archivo " );
         }
+    }
+
+    public Object identificarRegiones() {
+        String linea = "", campos[], codigo, nombre;
+        Region pais = new Region("00","Argentina");
+        try {
+            Scanner scanner = new Scanner(file);
+            while (scanner.hasNext()){
+                linea = scanner.nextLine(); //leo todas las lineas del archivo
+                campos = linea.split("\\|");
+                codigo = campos[0];
+                nombre = campos[1];
+                if(codigo.length()==2){
+                    pais.agregarSubregion(new Region(codigo,nombre));
+                }
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("No se pudo leer el archivo " );
+        }
+        return pais;
+
     }
 }

@@ -3,6 +3,8 @@ package Negocio;
 import Soporte.TSBHashtable;
 import Soporte.TextFile;
 
+import java.util.Collection;
+
 public class Agrupaciones {
     private TextFile fileAgrupaciones;
     private TSBHashtable table;
@@ -12,6 +14,7 @@ public class Agrupaciones {
         fileAgrupaciones = new TextFile(path + "\\descripcion_postulaciones.dsv");
         fileMesas = new TextFile(path + "\\mesas_totales_agrp_politica.dsv");
         table = fileAgrupaciones.identificarAgrupaciones();
+        fileMesas.sumarVotosPorAgrupacion(table);
     }
 
     @Override
@@ -21,5 +24,9 @@ public class Agrupaciones {
             sb.append("\n" + o);
         }
         return  sb.toString();
+    }
+
+    public Collection getResultados() {
+        return table.values();
     }
 }
