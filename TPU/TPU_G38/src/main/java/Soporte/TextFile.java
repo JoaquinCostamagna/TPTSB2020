@@ -74,6 +74,8 @@ public class TextFile {
     public Object identificarRegiones() {
         String linea = "", campos[], codigo, nombre;
         Region pais = new Region("00","Argentina");
+        Region distrito;
+        Region seccion;
         try {
             Scanner scanner = new Scanner(file);
             while (scanner.hasNext()){
@@ -81,9 +83,26 @@ public class TextFile {
                 campos = linea.split("\\|");
                 codigo = campos[0];
                 nombre = campos[1];
-                if(codigo.length()==2){
-                    pais.agregarSubregion(new Region(codigo,nombre));
+                switch(codigo.length()){
+                    case 2:
+                        //Distrito
+                        distrito = pais.getOrPutSubregion(codigo);
+                        distrito.setNombre(nombre);
+                        break;
+                    case 5:
+                        //Seccion
+                        distrito = pais.getOrPutSubregion(codigo.substring(0,2));
+                        seccion = distrito.getOrPutSubregion(codigo);
+                        seccion.setNombre(nombre);
+                        break;
+                    case 11:
+                        //Circuito
+                        distrito = pais.getOrPutSubregion(codigo.substring(0, 2));
+                        seccion = distrito.getOrPutSubregion(codigo.substring(0, 5));
+                        seccion.agregarSubregion(new Region(codigo, nombre));
+                        break;
                 }
+
             }
         } catch (FileNotFoundException e) {
             System.out.println("No se pudo leer el archivo " );

@@ -1,19 +1,33 @@
 package Interfaz;
 
 import Negocio.Agrupaciones;
+import Negocio.Region;
+import Negocio.Regiones;
 import Soporte.TextFile;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.DirectoryChooser;
 
 import java.io.File;
 
 public class PrincipalController {
     public Label lblUbicacion;
-    public TextArea txtAgrupaciones;
+    public ListView lvwResultados;
+    public ComboBox cboDistritos;
+    public ComboBox cboSecciones;
+    public ComboBox cboCircuito;
+    //public TextArea txtAgrupaciones;
+
+
+    public void initialize() {
+        lblUbicacion.setText(System.getProperty("user.dir") + "\\120819-054029");
+    }
 
     public void cambiarUbicacion(ActionEvent actionEvent) {
         DirectoryChooser dc = new DirectoryChooser(); //abre una ventana y me deja elegir una carpeta del sistema de archivos
@@ -30,10 +44,37 @@ public class PrincipalController {
         Agrupaciones agrupaciones = new Agrupaciones(lblUbicacion.getText());
         ol = FXCollections.observableArrayList(agrupaciones.getResultados());
         lvwResultados.setItems(ol);
-        txtAgrupaciones.setText(agrupaciones.toString());
 
-
+        //Generamos lista de distritos del país
+        Regiones regiones = new Regiones(lblUbicacion.getText());
+        ol = FXCollections.observableArrayList(regiones.getDistritos());
+        cboDistritos.setItems(ol);
 
 
     }
+
+    public void filtrarSecciones(ActionEvent actionEvent) {
+        //Generamos lista de Secciones del distrito elegido por el usuario
+        ObservableList ol;
+        Region region = (Region) cboDistritos.getValue();
+        ol = FXCollections.observableArrayList(region.getSubregiones());
+        cboSecciones.setItems(ol);
+
+    }
+
+    public void filtrarCircuitos(ActionEvent actionEvent) {
+        //Generamos lista de Circuitos de la Sección elegida por el usuario
+        if(cboSecciones.getValue() != null) {
+        ObservableList ol;
+        Region seccion = (Region) cboSecciones.getValue();
+        ol = FXCollections.observableArrayList(seccion.getSubregiones());
+        cboCircuito.setItems(ol);
+        }
+        else
+            cboCircuito.setItems(null);
+    }
+
+    /*public void load(MouseEvent mouseEvent) {
+        lblUbicacion.setText(System.getProperty("user.dir") + "\\120819-054029");
+    }*/
 }

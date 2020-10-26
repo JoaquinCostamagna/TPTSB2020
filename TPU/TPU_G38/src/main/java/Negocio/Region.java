@@ -23,8 +23,23 @@ public class Region {
         return subregion.values();
     }
 
+    public Region getSubregion(String codigo) {
+        return (Region) subregion.get(codigo);
+    }
+
+    public void setNombre(String nombre){
+        this.nombre = nombre;
+    }
+
     @Override
     public String toString() {
-        return codigo + '|' + nombre;
+        return codigo + " | " + nombre;
+    }
+
+    public Region getOrPutSubregion(String codigo) {
+        Region sub = (Region) subregion.get(codigo);
+        if (sub == null)
+            subregion.put(codigo, new Region(codigo, ""));
+        return (Region) subregion.get(codigo);
     }
 }
