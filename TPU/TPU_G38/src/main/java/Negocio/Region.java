@@ -15,6 +15,10 @@ public class Region {
         subregion = new TSBHashtable();
     }
 
+    public String getCodigo() {
+        return codigo;
+    }
+
     public void agregarSubregion(Region region) {
         subregion.put(region.codigo,region);
     }

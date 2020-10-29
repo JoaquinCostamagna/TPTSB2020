@@ -18,10 +18,10 @@
       <Label layoutX="24.0" layoutY="199.0" text="Resultados: " />
       <Line endX="559.0" layoutX="104.0" layoutY="105.0" startX="-100.0" />
       <Label layoutX="22.0" layoutY="119.0" text="Distrito:" />
-      <ComboBox fx:id="cboDistritos" layoutX="86.0" layoutY="115.0" onAction="#filtrarSecciones" prefHeight="25.0" prefWidth="216.0" />
+      <ComboBox fx:id="cboDistritos" layoutX="86.0" layoutY="115.0" onAction="#elegirDistrito" prefHeight="25.0" prefWidth="216.0" />
       <Label layoutX="22.0" layoutY="154.0" text="Sección:" />
-      <ComboBox fx:id="cboSecciones" layoutX="86.0" layoutY="150.0" onAction="#filtrarCircuitos" prefHeight="25.0" prefWidth="216.0" />
+      <ComboBox fx:id="cboSecciones" layoutX="86.0" layoutY="150.0" onAction="#elegirSeccion" prefHeight="25.0" prefWidth="216.0" />
       <Label layoutX="333.0" layoutY="119.0" text="Circuito: " />
-      <ComboBox fx:id="cboCircuito" layoutX="397.0" layoutY="115.0" prefHeight="25.0" prefWidth="216.0" />
+      <ComboBox fx:id="cboCircuito" layoutX="397.0" layoutY="115.0" onAction="#elegirCircuito" prefHeight="25.0" prefWidth="216.0" />
     </children>
 </AnchorPane>

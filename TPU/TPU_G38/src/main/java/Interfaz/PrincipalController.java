@@ -3,6 +3,7 @@ package Interfaz;
 import Negocio.Agrupaciones;
 import Negocio.Region;
 import Negocio.Regiones;
+import Negocio.Resultados;
 import Soporte.TextFile;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,6 +23,7 @@ public class PrincipalController {
     public ComboBox cboDistritos;
     public ComboBox cboSecciones;
     public ComboBox cboCircuito;
+    Resultados resultados;
     //public TextArea txtAgrupaciones;
 
 
@@ -40,41 +42,60 @@ public class PrincipalController {
 
     public void cargarDatos(ActionEvent actionEvent) {
         ObservableList ol;
-        //Generamos lista de resultados por agrupacion (para el pais)
-        Agrupaciones agrupaciones = new Agrupaciones(lblUbicacion.getText());
-        ol = FXCollections.observableArrayList(agrupaciones.getResultados());
-        lvwResultados.setItems(ol);
+        //Generamos lista de agrupaciones
+        Agrupaciones.leerAgrupaciones(lblUbicacion.getText());
+
 
         //Generamos lista de distritos del país
         Regiones regiones = new Regiones(lblUbicacion.getText());
         ol = FXCollections.observableArrayList(regiones.getDistritos());
         cboDistritos.setItems(ol);
+        //Procesamos los totales por region
+        resultados = new Resultados(lblUbicacion.getText());
+        Resultados resultados = new Resultados(lblUbicacion.getText());
+        System.out.println(resultados);
+        ol = FXCollections.observableArrayList(resultados.getResultadosPorRegion("00"));
+        lvwResultados.setItems(ol);
 
 
     }
 
-    public void filtrarSecciones(ActionEvent actionEvent) {
+    public void elegirDistrito(ActionEvent actionEvent) {
         //Generamos lista de Secciones del distrito elegido por el usuario
         ObservableList ol;
         Region region = (Region) cboDistritos.getValue();
         ol = FXCollections.observableArrayList(region.getSubregiones());
         cboSecciones.setItems(ol);
+        //Mostramos resultados del distrito
+        ol = FXCollections.observableArrayList(resultados.getResultadosPorRegion(region.getCodigo()));
+        lvwResultados.setItems(ol);
 
     }
 
-    public void filtrarCircuitos(ActionEvent actionEvent) {
+    public void elegirSeccion(ActionEvent actionEvent) {
         //Generamos lista de Circuitos de la Sección elegida por el usuario
         if(cboSecciones.getValue() != null) {
         ObservableList ol;
         Region seccion = (Region) cboSecciones.getValue();
         ol = FXCollections.observableArrayList(seccion.getSubregiones());
         cboCircuito.setItems(ol);
+        //Mostramos resultados de la seccion
+        ol = FXCollections.observableArrayList(resultados.getResultadosPorRegion(seccion.getCodigo()));
+        lvwResultados.setItems(ol);
         }
         else
             cboCircuito.setItems(null);
+
     }
 
-    /*public void load(MouseEvent mouseEvent) {
-        lblUbicacion.setText(System.getProperty("user.dir") + "\\120819-054029");
-    }*/
+
+    public void elegirCircuito(ActionEvent actionEvent) {
+        if(cboCircuito.getValue() != null) {
+            ObservableList ol;
+            Region circuito = (Region) cboCircuito.getValue();
+            //Mostramos resultados del circuito
+            ol = FXCollections.observableArrayList(resultados.getResultadosPorRegion(circuito.getCodigo()));
+            lvwResultados.setItems(ol);
+        }
+    }
 }
