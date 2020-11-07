@@ -30,9 +30,9 @@ public class TextFile {
         return linea;
     }
 
-    public TSBHashtable identificarAgrupaciones() {
+    public TSBHashtableDA identificarAgrupaciones() {
         String linea = "", campos[];
-        TSBHashtable ht = new TSBHashtable(10);
+        TSBHashtableDA ht = new TSBHashtableDA(10);
         Agrupacion agrupacion;
         try {
             Scanner scanner = new Scanner(file);
@@ -51,7 +51,7 @@ public class TextFile {
         return ht;
     }
 
-    public void sumarVotosPorAgrupacion(TSBHashtable table) {
+    public void sumarVotosPorAgrupacion(TSBHashtableDA table) {
         String linea = "", campos[];
         Agrupacion agrupacion;
         int votos;

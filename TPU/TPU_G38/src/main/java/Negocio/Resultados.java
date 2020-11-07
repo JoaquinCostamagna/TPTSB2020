@@ -1,6 +1,6 @@
 package Negocio;
 
-import Soporte.TSBHashtable;
+import Soporte.TSBHashtableDA;
 import Soporte.TextFile;
 
 import java.rmi.activation.ActivationGroup;
@@ -8,10 +8,10 @@ import java.util.Collection;
 
 public class Resultados {
 
-    private TSBHashtable tabla;
+    private TSBHashtableDA tabla;
 
     public Resultados(String path) {
-        tabla = new TSBHashtable<>();
+        tabla = new TSBHashtableDA<>();
         TextFile fileMesas = new TextFile(path + "\\mesas_totales_agrp_politica.dsv");
         fileMesas.sumarVotosPorRegion(this);
     }

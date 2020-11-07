@@ -1,19 +1,19 @@
 package Negocio;
 
-import Soporte.TSBHashtable;
+import Soporte.TSBHashtableDA;
 import Soporte.TextFile;
 
 import java.util.Collection;
 
 public class Agrupaciones {
 
-    private static TSBHashtable inicial;
-    private TSBHashtable conteo;
+    private static TSBHashtableDA inicial;
+    private TSBHashtableDA conteo;
 
 
 
     public Agrupaciones(){
-        conteo = new TSBHashtable();
+        conteo = new TSBHashtableDA();
         for (Object o : inicial.values()) {
             Agrupacion a = (Agrupacion) o;
             conteo.put(a.getCodigo(), new Agrupacion(a.getCodigo(),a.getNombre()));
