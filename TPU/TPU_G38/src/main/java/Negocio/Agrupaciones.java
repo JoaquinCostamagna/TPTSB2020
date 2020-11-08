@@ -10,8 +10,6 @@ public class Agrupaciones {
     private static TSBHashtableDA inicial;
     private TSBHashtableDA conteo;
 
-
-
     public Agrupaciones(){
         conteo = new TSBHashtableDA();
         for (Object o : inicial.values()) {
@@ -20,6 +18,18 @@ public class Agrupaciones {
         }
     }
 
+    public Agrupacion getAgrupacion(String codAgrupacion){
+        return (Agrupacion) conteo.get(codAgrupacion);
+    }
+
+    public Collection getResultados() {
+        return conteo.values();
+    }
+
+    /**
+     * Carga la tabla inicial de agrupaciones, a partir de la ubicación pasa por parámetro.
+     * @param path La ubicación a partir de la cual se debe cargar la tabla inicial de agrupaciones.
+     */
     public static void leerAgrupaciones(String path){
         TextFile fileAgrupaciones = new TextFile(path + "\\descripcion_postulaciones.dsv");
         inicial = fileAgrupaciones.identificarAgrupaciones();
@@ -32,13 +42,5 @@ public class Agrupaciones {
             sb.append("\n" + o);
         }
         return  sb.toString();
-    }
-
-    public Agrupacion getAgrupacion(String codAgrupacion){
-        return (Agrupacion) conteo.get(codAgrupacion);
-    }
-
-    public Collection getResultados() {
-        return conteo.values();
     }
 }

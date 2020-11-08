@@ -5,24 +5,24 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="panel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="523.0" prefWidth="665.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interfaz.PrincipalController">
+<AnchorPane fx:id="panel" maxHeight="550.0" maxWidth="700.0" minHeight="500.0" minWidth="700.0" prefHeight="550.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interfaz.PrincipalController">
     <children>
-        <Button fx:id="btnCambiar" layoutX="576.0" layoutY="26.0" mnemonicParsing="false" onAction="#cambiarUbicacion" text="Cambiar..." />
-        <Label fx:id="lblUbicacion" layoutX="106.0" layoutY="30.0" prefHeight="17.0" prefWidth="455.0">
+        <Button fx:id="btnCambiar" layoutX="610.0" layoutY="26.0" mnemonicParsing="false" onAction="#cambiarUbicacion" text="Cambiar..." />
+        <Label fx:id="lblUbicacion" layoutX="125.0" layoutY="30.0" prefHeight="17.0" prefWidth="455.0">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font></Label>
-        <Label layoutX="14.0" layoutY="30.0" text="Origen de datos: " />
-        <Button fx:id="btnCargar" layoutX="14.0" layoutY="58.0" mnemonicParsing="false" onAction="#cargarDatos" text="Cargar datos" />
-      <ListView fx:id="lvwResultados" layoutX="23.0" layoutY="228.0" prefHeight="272.0" prefWidth="621.0" />
-      <Label layoutX="24.0" layoutY="199.0" text="Resultados: " />
-      <Line endX="559.0" layoutX="104.0" layoutY="105.0" startX="-100.0" />
-      <Label layoutX="22.0" layoutY="119.0" text="Distrito:" />
-      <ComboBox fx:id="cboDistritos" layoutX="86.0" layoutY="115.0" onAction="#elegirDistrito" prefHeight="25.0" prefWidth="216.0" />
-      <Label layoutX="22.0" layoutY="154.0" text="Sección:" />
-      <ComboBox fx:id="cboSecciones" layoutX="86.0" layoutY="150.0" onAction="#elegirSeccion" prefHeight="25.0" prefWidth="216.0" />
-      <Label layoutX="333.0" layoutY="119.0" text="Circuito: " />
-      <ComboBox fx:id="cboCircuito" layoutX="397.0" layoutY="115.0" onAction="#elegirCircuito" prefHeight="25.0" prefWidth="216.0" />
-      <Label fx:id="lblCargando" layoutX="106.0" layoutY="62.0" text="Cargando..." visible="false" />
+        <Label layoutX="22.0" layoutY="30.0" text="Origen de datos: " />
+        <Button fx:id="btnCargar" layoutX="22.0" layoutY="58.0" mnemonicParsing="false" onAction="#cargarDatos" text="Cargar datos" />
+      <ListView fx:id="lvwResultados" layoutX="22.0" layoutY="225.0" prefHeight="303.0" prefWidth="656.0" />
+      <Label layoutX="22.0" layoutY="199.0" text="Resultados: " />
+      <Line endX="596.0" layoutX="104.0" layoutY="101.0" startX="-104.0" />
+      <Label layoutX="22.0" layoutY="122.0" text="Distrito:" />
+      <ComboBox fx:id="cboDistritos" layoutX="86.0" layoutY="118.0" onAction="#elegirDistrito" prefHeight="25.0" prefWidth="250.0" />
+      <Label layoutX="22.0" layoutY="161.0" text="Sección:" />
+      <ComboBox fx:id="cboSecciones" layoutX="86.0" layoutY="157.0" onAction="#elegirSeccion" prefHeight="25.0" prefWidth="250.0" />
+      <Label layoutX="364.0" layoutY="122.0" text="Circuito: " />
+      <ComboBox fx:id="cboCircuito" layoutX="428.0" layoutY="118.0" onAction="#elegirCircuito" prefHeight="25.0" prefWidth="250.0" />
+      <Label fx:id="lblCargando" layoutX="118.0" layoutY="62.0" prefHeight="17.0" prefWidth="84.0" text="Cargando..." visible="false" />
     </children>
 </AnchorPane>

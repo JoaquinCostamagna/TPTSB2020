@@ -16,7 +16,13 @@ public class Resultados {
         fileMesas.sumarVotosPorRegion(this);
     }
 
-
+    /**
+     * Realiza la sumatoria de votos paa una agrupación en una región determinada. Si la región no estaba cargada, la
+     * agrega a la tabla.
+     * @param codRegion EL código de la región en donde cargar los datos.
+     * @param codAgrupacion El código de la agrupación a sumarle los votos.
+     * @param votos El número de votos a sumar.
+     */
     public void sumarVotos(String codRegion, String codAgrupacion, int votos) {
         int actual;
         //Buscamos la región en la tabla, y la creamos si no existe

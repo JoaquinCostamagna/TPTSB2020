@@ -5,11 +5,10 @@ import java.util.*;
 
 /**
  * Clase para emular la funcionalidad de la clase java.util.Hashtable, pero implementada
- * en base al modelo de Resolución de Colisiones por Direccionamiento Abierto. Modelo para
- * aplicar de base para el desarrollo del TPU.
+ * en base al modelo de Resolución de Colisiones por Direccionamiento Abierto.
  *
- * @author Ing. Valerio Frittelli.
- * @version Octubre de 2019.
+ * @author Gastón Muñoz.
+ * @version Noviembre de 2020.
  * @param <K> el tipo de los objetos que serán usados como clave en la tabla.
  * @param <V> el tipo de los objetos que serán los valores de la tabla.
  */

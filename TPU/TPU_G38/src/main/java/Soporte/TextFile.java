@@ -16,20 +16,10 @@ public class TextFile {
         file = new File(path);
     }
 
-    public String leerEncabezado(){
-        String linea = "";
-        try {
-            Scanner scanner = new Scanner(file);
-            while (scanner.hasNext()){
-                linea = scanner.nextLine();
-                break;
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println("No se pudo leer el archivo " );
-        }
-        return linea;
-    }
-
+    /**
+     * Carga en una tabla todas las distintas agrupaciones a partir del archivo referenciado por {@code file}.
+     * @return una tabla de hash con las distintas agrupaciones.
+     */
     public TSBHashtableDA identificarAgrupaciones() {
         String linea = "", campos[];
         TSBHashtableDA ht = new TSBHashtableDA(10);
@@ -51,27 +41,10 @@ public class TextFile {
         return ht;
     }
 
-    public void sumarVotosPorAgrupacion(TSBHashtableDA table) {
-        String linea = "", campos[];
-        Agrupacion agrupacion;
-        int votos;
-        try {
-            Scanner scanner = new Scanner(file);
-            while (scanner.hasNext()){
-                linea = scanner.nextLine(); //leo todas las lineas del archivo
-                campos = linea.split("\\|");
-                //filtramos votacion para presidente
-                if(campos[4].compareTo("000100000000000") == 0){
-                    agrupacion = (Agrupacion) table.get(campos[5]);
-                    votos = Integer.parseInt(campos[6]);
-                    agrupacion.sumarVotos(votos);
-                }
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println("No se pudo leer el archivo " );
-        }
-    }
-
+    /**
+     * Realiza la sumatoria de votos por cada región a la tabla de resultados, a partir del archivo de resultados.
+     * @param resultados el objeto de la clase Resultados que contiene la tabla de resultados.
+     */
     public void sumarVotosPorRegion(Resultados resultados) {
         String linea = "", campos[], codAgrupacion;
         Region region;

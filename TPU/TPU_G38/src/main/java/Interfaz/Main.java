@@ -13,7 +13,11 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("principal.fxml"));
         primaryStage.setTitle("Elecciones PASO 2019");
-        primaryStage.setScene(new Scene(root, 665, 523));
+        primaryStage.setMinWidth(715);
+        primaryStage.setMaxWidth(715);
+        primaryStage.setMinHeight(590);
+        primaryStage.setMaxHeight(590);
+        primaryStage.setScene(new Scene(root, 700, 550));
         primaryStage.show();
         try {
             Image ico = new Image("banderaArgentina.png");
@@ -21,10 +25,9 @@ public class Main extends Application {
         }
         catch (Exception ex)
         {
-            System.out.println("No se encontro la imagen");
+            System.out.println("No se encontró la imagen.");
         }
     }
-
 
     public static void main(String[] args) {
         launch(args);

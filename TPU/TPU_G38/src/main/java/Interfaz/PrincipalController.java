@@ -4,7 +4,6 @@ import Negocio.Agrupaciones;
 import Negocio.Region;
 import Negocio.Regiones;
 import Negocio.Resultados;
-import Soporte.TextFile;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,8 +11,6 @@ import javafx.scene.Cursor;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.DirectoryChooser;
 
@@ -28,8 +25,6 @@ public class PrincipalController {
     public Label lblCargando;
     public AnchorPane panel;
     Resultados resultados;
-    //public TextArea txtAgrupaciones;
-
 
     public void initialize() {
         lblUbicacion.setText(System.getProperty("user.dir") + "\\120819-054029");
@@ -37,13 +32,17 @@ public class PrincipalController {
 
     public void cambiarUbicacion(ActionEvent actionEvent) {
         DirectoryChooser dc = new DirectoryChooser(); //abre una ventana y me deja elegir una carpeta del sistema de archivos
-        dc.setTitle("Seleccione ubicacion de los datos");
+        dc.setTitle("Seleccione ubicación de los datos");
         dc.setInitialDirectory(new File(lblUbicacion.getText()));
         File file = dc.showDialog(null);
         if(file != null)
             lblUbicacion.setText(file.getPath());
     }
 
+    /**
+     * Inicia la carga de datos de los resultados de las votaciones para cada agrupación, el combobox de los distritos
+     * para habilitar la selección, y la carga de todas las tablas de hash, tanto de conteo como de resultados.
+     */
     public void cargarDatos(ActionEvent actionEvent) {
 
         Runnable r = new Runnable() {
@@ -69,9 +68,12 @@ public class PrincipalController {
         panel.setCursor(Cursor.WAIT);
 
         new Thread(r).start();
-
     }
 
+    /**
+     * Busca los resultados de las votaciones de cada agrupación en el distrito seleccionado, y carga el combobox de
+     * sección con las secciones correspondientes al distrito seleccionado, limpiando la selección de los otros combobox.
+     */
     public void elegirDistrito(ActionEvent actionEvent) {
         //Generamos lista de Secciones del distrito elegido por el usuario
         ObservableList ol;
@@ -90,6 +92,11 @@ public class PrincipalController {
 
     }
 
+    /**
+     * Busca los resultados de las votaciones de cada agrupación en la sección seleccionada, y carga el combobox de
+     * circuito con los circuitos correspondientes a la sección seleccionada. Además, limpia la selección del combobox
+     * de circuito, de ser necesario.
+     */
     public void elegirSeccion(ActionEvent actionEvent) {
         //Generamos lista de Circuitos de la Sección elegida por el usuario
         if(cboSecciones.getValue() != null) {
@@ -109,10 +116,12 @@ public class PrincipalController {
         }
         else
             cboCircuito.setItems(null);
-
     }
 
-
+    /**
+     * Busca los resultados de las votaciones de cada agrupación en el circuito correspondiente. En el caso de que no
+     * haya votaciones realizadas, lo informa mediante un mensaje.
+     */
     public void elegirCircuito(ActionEvent actionEvent) {
         if(cboCircuito.getValue() != null) {
             ObservableList ol;
