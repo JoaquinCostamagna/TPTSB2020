@@ -34,7 +34,7 @@ public class PrincipalController {
     public void initialize() {
         lblUbicacion.setText(System.getProperty("user.dir") + "\\120819-054029");
     }
-    
+
     public void cambiarUbicacion(ActionEvent actionEvent) {
         DirectoryChooser dc = new DirectoryChooser(); //abre una ventana y me deja elegir una carpeta del sistema de archivos
         dc.setTitle("Seleccione ubicacion de los datos");
@@ -79,21 +79,33 @@ public class PrincipalController {
         ol = FXCollections.observableArrayList(region.getSubregiones());
         cboSecciones.setItems(ol);
         //Mostramos resultados del distrito
-        ol = FXCollections.observableArrayList(resultados.getResultadosPorRegion(region.getCodigo()));
-        lvwResultados.setItems(ol);
+        try{ ol = FXCollections.observableArrayList(resultados.getResultadosPorRegion(region.getCodigo()));
+        lvwResultados.setItems(ol);}
+        catch (NullPointerException ex)
+        {
+            ol = FXCollections.observableArrayList(FXCollections.emptyObservableList());
+            ol.add("No se encontraron resultados en este distrito");
+            lvwResultados.setItems(ol);
+        }
 
     }
 
     public void elegirSeccion(ActionEvent actionEvent) {
         //Generamos lista de Circuitos de la Sección elegida por el usuario
         if(cboSecciones.getValue() != null) {
-        ObservableList ol;
-        Region seccion = (Region) cboSecciones.getValue();
-        ol = FXCollections.observableArrayList(seccion.getSubregiones());
-        cboCircuito.setItems(ol);
-        //Mostramos resultados de la seccion
-        ol = FXCollections.observableArrayList(resultados.getResultadosPorRegion(seccion.getCodigo()));
-        lvwResultados.setItems(ol);
+            ObservableList ol;
+            Region seccion = (Region) cboSecciones.getValue();
+            ol = FXCollections.observableArrayList(seccion.getSubregiones());
+            cboCircuito.setItems(ol);
+            //Mostramos resultados de la seccio
+            try{ol = FXCollections.observableArrayList(resultados.getResultadosPorRegion(seccion.getCodigo()));
+                lvwResultados.setItems(ol);}
+            catch (NullPointerException ex)
+            {
+                ol = FXCollections.observableArrayList(FXCollections.emptyObservableList());
+                ol.add("No se encontraron resultados en esta sección");
+                lvwResultados.setItems(ol);
+            }
         }
         else
             cboCircuito.setItems(null);
