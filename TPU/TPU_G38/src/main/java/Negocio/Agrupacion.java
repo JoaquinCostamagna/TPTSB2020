@@ -23,10 +23,7 @@ public class Agrupacion {
 
     @Override
     public String toString() {
-        return "Agrupacion{" +
-                "codigo='" + codigo + '\'' +
-                ", nombre='" + nombre + '\'' +
-                ", votos=" + votos +
-                '}';
+
+        return String.format("%-3s | ",codigo) + String.format("%s | ",nombre) + votos;
     }
 }

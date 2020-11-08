@@ -8,11 +8,13 @@ import Soporte.TextFile;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.scene.Cursor;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.DirectoryChooser;
 
 import java.io.File;
@@ -23,6 +25,8 @@ public class PrincipalController {
     public ComboBox cboDistritos;
     public ComboBox cboSecciones;
     public ComboBox cboCircuito;
+    public Label lblCargando;
+    public AnchorPane panel;
     Resultados resultados;
     //public TextArea txtAgrupaciones;
 
@@ -41,21 +45,32 @@ public class PrincipalController {
     }
 
     public void cargarDatos(ActionEvent actionEvent) {
-        ObservableList ol;
-        //Generamos lista de agrupaciones
-        Agrupaciones.leerAgrupaciones(lblUbicacion.getText());
+
+        Runnable r = new Runnable() {
+            public void run() {
+                ObservableList ol;
+                //Generamos lista de agrupaciones
+                Agrupaciones.leerAgrupaciones(lblUbicacion.getText());
+                //Generamos lista de distritos del país
+                Regiones regiones = new Regiones(lblUbicacion.getText());
+                ol = FXCollections.observableArrayList(regiones.getDistritos());
+                cboDistritos.setItems(ol);
+                //Procesamos los totales por region
+                resultados = new Resultados(lblUbicacion.getText());
+                Resultados resultados = new Resultados(lblUbicacion.getText());
+                ol = FXCollections.observableArrayList(resultados.getResultadosPorRegion("00"));
+                lvwResultados.setItems(ol);
+                lblCargando.setVisible(false);
+                panel.setCursor(Cursor.DEFAULT);
+            }
+        };
+
+        lblCargando.setVisible(true);
+        panel.setCursor(Cursor.WAIT);
+
+        new Thread(r).start();
 
 
-        //Generamos lista de distritos del país
-        Regiones regiones = new Regiones(lblUbicacion.getText());
-        ol = FXCollections.observableArrayList(regiones.getDistritos());
-        cboDistritos.setItems(ol);
-        //Procesamos los totales por region
-        resultados = new Resultados(lblUbicacion.getText());
-        Resultados resultados = new Resultados(lblUbicacion.getText());
-        System.out.println(resultados);
-        ol = FXCollections.observableArrayList(resultados.getResultadosPorRegion("00"));
-        lvwResultados.setItems(ol);
 
 
     }

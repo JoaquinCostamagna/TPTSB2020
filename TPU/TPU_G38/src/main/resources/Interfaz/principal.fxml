@@ -5,7 +5,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="523.0" prefWidth="665.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interfaz.PrincipalController">
+<AnchorPane fx:id="panel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="523.0" prefWidth="665.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interfaz.PrincipalController">
     <children>
         <Button fx:id="btnCambiar" layoutX="576.0" layoutY="26.0" mnemonicParsing="false" onAction="#cambiarUbicacion" text="Cambiar..." />
         <Label fx:id="lblUbicacion" layoutX="106.0" layoutY="30.0" prefHeight="17.0" prefWidth="455.0">
@@ -23,5 +23,6 @@
       <ComboBox fx:id="cboSecciones" layoutX="86.0" layoutY="150.0" onAction="#elegirSeccion" prefHeight="25.0" prefWidth="216.0" />
       <Label layoutX="333.0" layoutY="119.0" text="Circuito: " />
       <ComboBox fx:id="cboCircuito" layoutX="397.0" layoutY="115.0" onAction="#elegirCircuito" prefHeight="25.0" prefWidth="216.0" />
+      <Label fx:id="lblCargando" layoutX="106.0" layoutY="62.0" text="Cargando..." visible="false" />
     </children>
 </AnchorPane>
