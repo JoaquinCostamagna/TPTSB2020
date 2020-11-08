@@ -458,7 +458,6 @@ public class TSBHashtableDA<K,V> implements Map<K,V>, Cloneable, Serializable
     @Override
     public String toString() 
     {
-        // REVISAR... Asegúrense de que funciona bien...
         StringBuilder cad = new StringBuilder("[");
         for(int i = 0; i < this.table.length; i++)
         {
@@ -987,8 +986,6 @@ public class TSBHashtableDA<K,V> implements Map<K,V>, Cloneable, Serializable
         
         private class EntrySetIterator implements Iterator<Map.Entry<K, V>>
         {
-            // REVISAR y HACER... Agregar los atributos que necesiten...
-
             // flag para controlar si remove() está bien invocado...
             private boolean next_ok;
 
