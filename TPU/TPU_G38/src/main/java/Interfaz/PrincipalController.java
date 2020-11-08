@@ -34,7 +34,7 @@ public class PrincipalController {
     public void initialize() {
         lblUbicacion.setText(System.getProperty("user.dir") + "\\120819-054029");
     }
-
+    
     public void cambiarUbicacion(ActionEvent actionEvent) {
         DirectoryChooser dc = new DirectoryChooser(); //abre una ventana y me deja elegir una carpeta del sistema de archivos
         dc.setTitle("Seleccione ubicacion de los datos");
@@ -69,9 +69,6 @@ public class PrincipalController {
         panel.setCursor(Cursor.WAIT);
 
         new Thread(r).start();
-
-
-
 
     }
 
@@ -109,8 +106,14 @@ public class PrincipalController {
             ObservableList ol;
             Region circuito = (Region) cboCircuito.getValue();
             //Mostramos resultados del circuito
-            ol = FXCollections.observableArrayList(resultados.getResultadosPorRegion(circuito.getCodigo()));
-            lvwResultados.setItems(ol);
+            try {
+                ol = FXCollections.observableArrayList(resultados.getResultadosPorRegion(circuito.getCodigo()));
+                lvwResultados.setItems(ol);
+            } catch (NullPointerException ex) {
+                ol = FXCollections.observableArrayList(FXCollections.emptyObservableList());
+                ol.add("No se encontraron resultados en ese circuito");
+                lvwResultados.setItems(ol);
+            }
         }
     }
 }
